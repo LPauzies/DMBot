@@ -1,0 +1,26 @@
+{
+  "name": "dmbot",
+  "version": "1.0.0",
+  "description": "DMBot : the facilitator for every RPG parties",
+  "main": "DMBot.js",
+  "dependencies": {
+    "discord.js": "^12.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LPauzies/DMBot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "Lucas Pauzies (lucas.pauzies@hotmail.fr)",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/LPauzies/DMBot/issues"
+  },
+  "homepage": "https://github.com/LPauzies/DMBot#readme"
+}

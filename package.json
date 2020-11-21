@@ -1,24 +1,32 @@
 {
   "name": "dmbot",
   "version": "1.0.0",
-  "description": "DMBot : the facilitator for every RPG parties",
+  "description": "DMBot",
   "main": "DMBot.js",
+  "applicationScope" : "bot",
   "dependencies": {
-    "discord.js": "^12.4.1"
+    "argparse": "^2.0.1",
+    "discord.js": "^12.4.1",
+    "ffmpeg-static": "^4.2.7"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node DMBot.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LPauzies/DMBot.git"
   },
   "keywords": [
-    "discord"
+    "Discord",
+    "RPG",
+    "Tabletop",
+    "Bot",
+    "DungeonMaster"
   ],
-  "author": "Lucas Pauzies (lucas.pauzies@hotmail.fr)",
-  "license": "AGPL-3.0-or-later",
+  "author": "Lucas Pauzies",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/LPauzies/DMBot/issues"
   },

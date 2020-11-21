@@ -1,6 +1,9 @@
-const Discord = require("discord.js");
+"use strict";
+
+const Discord = require('discord.js');
+const DMBotParameters = require("./utils/DMBotParameters.js");
 const DMBotClient = new Discord.Client();
 
-console.log("I'm in !");
+const parameters = DMBotParameters.DMBotParameters.attributes();
 
-//DMBotClient.login();
+DMBotClient.login(parameters.config.token);

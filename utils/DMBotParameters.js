@@ -3,20 +3,16 @@ const appMetadata = require("../package.json");
 
 class DMBotParameters {
 
-    constructor() {}
-
-    static attributes() {
-        return {
-            config : config,
-            metadata : appMetadata
-        }
-    }
+    // Represents data from the bot seen in https://discord.com/developers/applications
+    // Available to be modified externally case of token changing through GUI
+    static config = config;
+    static metadata = appMetadata;
 
     static generateOAuth2Invitation() {
         let endpoint = "https://discord.com/api/oauth2/authorize?";
-        let client_id = "client_id=" + config.client_id;
-        let permissions = "permissions=" + config.permissions_level;
-        let scope = "scope=" + appMetadata.applicationScope;
+        let client_id = "client_id=" + DMBotParameters.config.client_id;
+        let permissions = "permissions=" + DMBotParameters.config.permissions_level;
+        let scope = "scope=" + DMBotParameters.metadata.applicationScope;
         return endpoint + client_id + "&" + permissions + "&" + scope;
     }
 

@@ -8,7 +8,7 @@ class InviteCommand extends Command.Command {
 
     // Overrided from Command
     execute(messageObject, ...args) {
-        if (args[0]) messageObject.reply(`ere is the link to invite me in another discord server ${args[0]}`);
+        if (args[0]) messageObject.reply(`here is the link to invite me in another discord server ${args[0]}`);
     }
 
     //Overrided from Command

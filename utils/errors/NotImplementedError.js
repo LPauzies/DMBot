@@ -6,4 +6,4 @@ class NotImplementedError extends Error {
 
 }
 
-module.NotImplementedError = NotImplementedError;
+exports.NotImplementedError = NotImplementedError;

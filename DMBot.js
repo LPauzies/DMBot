@@ -23,6 +23,7 @@ const luckRollDiceCommand = new LuckRollDiceCommand.LuckRollDiceCommand(prefix);
 
 DMBotClient.on("ready", () => {
     DMBotLogger.DMBotLogger.info(`Connected as ${DMBotClient.user.tag}` );
+    DMBotClient.user.setActivity("PCs playing", { type : "WATCHING" });
     for (const guild of DMBotClient.guilds.cache.values()) {
         if (guild.available) DMBotLogger.DMBotLogger.info(`Logged in and available to \"${guild.name}\" with id ${guild.id}`);
     }
@@ -39,4 +40,7 @@ DMBotClient.on("message", message => {
     }
 });
 
-DMBotClient.login(DMBotParameters.DMBotParameters.config.token);
+DMBotClient
+    .login(DMBotParameters.DMBotParameters.config.token)
+    .then(() => DMBotLogger.DMBotLogger.info("Logged successfully using Discord token"))
+    .catch((err) => DMBotLogger.DMBotLogger.exception("Cannot logged using Discord token", err));

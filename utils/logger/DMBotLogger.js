@@ -30,6 +30,7 @@ class DMBotLogger {
 
     static exception(message, exception) {
         let log = DMBotLogger.#generateLog(DMBotLogger.#LOG_LEVEL.EXCEPTION, message) + "\n" + exception.stack;
+        console.log(exception.stack);
         let pathLog = DMBotLogger.#getOrCreateLogFile();
         fs.writeFile(pathLog, log, { flag : "a" }, err => {
             if (err) console.log("Error while writing the exception log to " + pathLog);

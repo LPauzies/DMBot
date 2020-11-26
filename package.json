@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "DMBot",
   "main": "DMBot.js",
-  "applicationScope" : "bot",
+  "applicationScope": "bot",
   "dependencies": {
+    "@discordjs/opus": "^0.3.3",
     "argparse": "^2.0.1",
     "discord.js": "^12.4.1",
     "ffmpeg-static": "^4.2.7"

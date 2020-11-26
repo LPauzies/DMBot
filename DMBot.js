@@ -9,6 +9,7 @@ const DMBotLogger =  require("./utils/logger/DMBotLogger.js");
 const PingCommand = require("./commands/commands/PingCommand.js");
 const InviteCommand = require("./commands/commands/InviteCommand.js");
 const RollDiceCommand = require("./commands/commands/RollDiceCommand.js");
+const LuckRollDiceCommand = require("./commands/commands/LuckRollDiceCommand.js");
 
 const DMBotClient = new Discord.Client();
 
@@ -18,6 +19,7 @@ const prefix = DMBotParameters.DMBotParameters.config.botConfig.prefix;
 const pingCommand = new PingCommand.PingCommand(prefix);
 const inviteCommand = new InviteCommand.InviteCommand(prefix);
 const rollDiceCommand = new RollDiceCommand.RollDiceCommand(prefix);
+const luckRollDiceCommand = new LuckRollDiceCommand.LuckRollDiceCommand(prefix);
 
 DMBotClient.on("ready", () => {
     DMBotLogger.DMBotLogger.info(`Connected as ${DMBotClient.user.tag}` );
@@ -31,6 +33,7 @@ DMBotClient.on("message", message => {
         if (message.content.startsWith(pingCommand.commandIdentity())) pingCommand.execute(message);
         if (message.content.startsWith(inviteCommand.commandIdentity())) inviteCommand.execute(message, DMBotParameters.DMBotParameters.generateOAuth2Invitation());
         if (message.content.startsWith(rollDiceCommand.commandIdentity())) rollDiceCommand.execute(message, rollDiceCommand.parseArguments(message.content));
+        if (message.content.startsWith(luckRollDiceCommand.commandIdentity())) luckRollDiceCommand.execute(message);
     } catch (error) {
         DMBotLogger.DMBotLogger.exception("Something wrong happened during message event", error);
     }

@@ -23,7 +23,7 @@ const luckRollDiceCommand = new LuckRollDiceCommand.LuckRollDiceCommand(prefix);
 
 DMBotClient.on("ready", () => {
     DMBotLogger.DMBotLogger.info(`Connected as ${DMBotClient.user.tag}` );
-    DMBotClient.user.setActivity("PCs playing", { type : "WATCHING" });
+    DMBotClient.user.setActivity(`${prefix} help`);
     for (const guild of DMBotClient.guilds.cache.values()) {
         if (guild.available) DMBotLogger.DMBotLogger.info(`Logged in and available to "${guild.name}" with id ${guild.id}`);
     }

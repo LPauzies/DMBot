@@ -25,7 +25,7 @@ DMBotClient.on("ready", () => {
     DMBotLogger.DMBotLogger.info(`Connected as ${DMBotClient.user.tag}` );
     DMBotClient.user.setActivity("PCs playing", { type : "WATCHING" });
     for (const guild of DMBotClient.guilds.cache.values()) {
-        if (guild.available) DMBotLogger.DMBotLogger.info(`Logged in and available to \"${guild.name}\" with id ${guild.id}`);
+        if (guild.available) DMBotLogger.DMBotLogger.info(`Logged in and available to "${guild.name}" with id ${guild.id}`);
     }
 });
 

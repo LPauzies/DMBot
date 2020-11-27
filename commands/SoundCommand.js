@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const ytdl = require('ytdl-core-discord');
 
 const Command = require('./Command.js');
 const SoundNotFoundError = require("./../utils/errors/SoundNotFoundError.js");
@@ -23,10 +24,14 @@ class SoundCommand extends Command.Command {
     }
 
     playSound(messageObject, soundName) {
-        console.log(this.soundsAvailables);
         const voiceChannel = messageObject.member.voice.channel;
         // Check if voice channel exist for the member who tell to the bot
         if (voiceChannel) {
+            //Check if joinable
+            if (!voiceChannel.joinable) {
+                messageObject.reply("cannot join this channel");
+                throw new NotInVoiceChannelError.NotInVoiceChannelError("Cannot connect to a not joinable voice channel");
+            }
             // Check if the bot is connected to a voice channel
             let isAlreadyUsed = false;
             let membersInChannel = voiceChannel.members.array();
@@ -37,24 +42,20 @@ class SoundCommand extends Command.Command {
                     break;
                 }
             }
-            if (isAlreadyUsed) {
-                messageObject.reply("already playing sound in voice channel");
-                throw new NotAvailableVoiceChannelError.NotAvailableVoiceChannelError("Already connected to this voice channel");
-            }
 
-            if (!voiceChannel.joinable) {
-                messageObject.reply("cannot join this channel");
-                throw new NotInVoiceChannelError.NotInVoiceChannelError("Cannot connect to a not joinable voice channel");
-            }
+            if (isAlreadyUsed) voiceChannel.leave();
 
-            let soundPath = path.join(this.soundFolderPath, `${soundName}.mp3`);
+            let jsonSoundPath = path.join(this.soundFolderPath, `${soundName}.json`);
             // Check if the sound file exists
-            if (fs.existsSync(soundPath)) {
+            if (fs.existsSync(jsonSoundPath)) {
+                let jsonSound = require(jsonSoundPath);
                 voiceChannel.join()
-                            .then(voiceConnection => {
-                                voiceConnection.play(soundPath)
-                                               .on("finish", () => voiceChannel.leave())
-                            })
+                            .then(
+                                async voiceConnection => {
+                                    voiceConnection.play(await ytdl(jsonSound.link), { type : "opus" })
+                                                .on("finish", () => voiceChannel.leave());
+                                    messageObject.channel.send(`Currently playing **${jsonSound.name}**`);
+                                })
                             .catch(error => {
                                 messageObject.reply("cannot join this channel");
                                 throw error;
@@ -69,7 +70,7 @@ class SoundCommand extends Command.Command {
     #listAvailableSounds() {
         fs.readdir(this.soundFolderPath, (err, files) => {
             files.forEach(file => {
-                if (file.endsWith(".mp3"))  this.soundsAvailables.push(file.split(".")[0]);
+                if (file.endsWith(".json"))  this.soundsAvailables.push(file.split(".")[0]);
             })
         })
     }

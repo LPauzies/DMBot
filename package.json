@@ -8,7 +8,8 @@
     "@discordjs/opus": "^0.3.3",
     "argparse": "^2.0.1",
     "discord.js": "^12.4.1",
-    "ffmpeg-static": "^4.2.7"
+    "ffmpeg-static": "^4.2.7",
+    "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {},
   "scripts": {

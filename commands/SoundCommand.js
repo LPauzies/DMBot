@@ -43,7 +43,10 @@ class SoundCommand extends Command.Command {
                 }
             }
 
-            if (isAlreadyUsed) voiceChannel.leave();
+            if (isAlreadyUsed) {
+                messageObject.reply("DMBot is already busy !");
+                throw new NotAvailableVoiceChannelError.NotAvailableVoiceChannelError("Voice channel already busy by DMBot");
+            }
 
             let jsonSoundPath = path.join(this.soundFolderPath, `${soundName}.json`);
             // Check if the sound file exists

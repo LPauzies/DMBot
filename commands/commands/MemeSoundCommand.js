@@ -14,16 +14,18 @@ class MemeSoundCommand extends SoundCommand.SoundCommand {
             return;
         }
         let argsSplitted = args[0].split(" ");
-        if (argsSplitted.length == 1) {
-            this.playSound(messageObject, args[0]);
+        if (argsSplitted[0] == "help") {
+            messageObject.channel.send(this.generateHelpMessage());
+        } else if (argsSplitted.length > 1 || argsSplitted[0] == "") {
+            messageObject.reply(`you maybe need a bit of help, type ${this.prefix} ${this.keyword} help to know available memes`);
         } else {
-            messageObject.reply("you maybe need a bit of help");
+            this.playSound(messageObject, args[0]);
         }
     }
 
     //Overrided from SoundCommand
     help() {
-        return `${this.prefix} ${this.keyword} => ${this.description}`;
+        return `${this.prefix} ${this.keyword} <meme> => ${this.description}`;
     }
 
 }

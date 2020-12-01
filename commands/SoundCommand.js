@@ -73,9 +73,29 @@ class SoundCommand extends Command.Command {
     #listAvailableSounds() {
         fs.readdir(this.soundFolderPath, (err, files) => {
             files.forEach(file => {
-                if (file.endsWith(".json"))  this.soundsAvailables.push(file.split(".")[0]);
+                if (file.endsWith(".json"))  {
+                    let json = require(path.join(this.soundFolderPath, file));
+                    this.soundsAvailables.push({ name : file.split(".")[0], fullname : json.name });
+                }
             })
-        })
+        });
+    }
+
+    generateHelpMessage() {
+        let res = `Help message for **${this.keyword}**\n---\n`;
+        let maxMessageInOneLine = 5;
+        let currentMessageCountInOneLine = 1;
+        for (const sound of this.soundsAvailables) {
+            res += `**${sound.name}** : *${sound.fullname}* `
+            if (currentMessageCountInOneLine < maxMessageInOneLine) {
+                res += ", ";
+                currentMessageCountInOneLine++;
+            } else {
+                res += "\n";
+                currentMessageCountInOneLine = 1;
+            }
+        }
+        return res;
     }
 
 }

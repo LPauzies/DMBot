@@ -14,6 +14,8 @@ const AmbientSoundCommand = require("./commands/commands/AmbientSoundCommand.js"
 const MemeSoundCommand = require("./commands/commands/MemeSoundCommand.js");
 const MusicSoundCommand = require("./commands/commands/MusicSoundCommand.js");
 const StopSoundCommand = require("./commands/commands/StopSoundCommand.js");
+// Help command
+const HelpCommand = require("./commands/commands/HelpCommand.js");
 
 const DMBotClient = new Discord.Client();
 
@@ -28,6 +30,9 @@ const ambientSoundCommand = new AmbientSoundCommand.AmbientSoundCommand(prefix);
 const memeSoundCommand = new MemeSoundCommand.MemeSoundCommand(prefix);
 const musicSoundCommand = new MusicSoundCommand.MusicSoundCommand(prefix);
 const stopSoundCommand = new StopSoundCommand.StopSoundCommand(prefix);
+const helpCommand = new HelpCommand.HelpCommand(prefix, 
+    pingCommand, inviteCommand, rollDiceCommand, luckRollDiceCommand,
+    ambientSoundCommand, memeSoundCommand, musicSoundCommand, stopSoundCommand);
 
 DMBotClient.on("ready", () => {
     DMBotLogger.DMBotLogger.info(`Connected as ${DMBotClient.user.tag}`);
@@ -47,6 +52,7 @@ DMBotClient.on("message", async message => {
         if (message.content.startsWith(memeSoundCommand.commandIdentity())) memeSoundCommand.execute(message, memeSoundCommand.parseArguments(message.content));
         if (message.content.startsWith(musicSoundCommand.commandIdentity())) musicSoundCommand.execute(message, musicSoundCommand.parseArguments(message.content));
         if (message.content.startsWith(stopSoundCommand.commandIdentity())) stopSoundCommand.execute(message);
+        if (message.content.startsWith(helpCommand.commandIdentity())) helpCommand.execute(message);
     } catch (error) {
         DMBotLogger.DMBotLogger.exception("Something wrong happened during message event", error);
     }

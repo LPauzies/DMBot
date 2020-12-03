@@ -18,3 +18,5 @@ class HelpCommand extends Command.Command {
     }
 
 }
+
+exports.HelpCommand = HelpCommand;

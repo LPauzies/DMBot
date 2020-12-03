@@ -40,6 +40,11 @@ class StopSoundCommand extends Command.Command {
         }
     }
 
+    //Overrided from Command
+    help() {
+        return `${this.prefix} ${this.keyword} => ${this.description}`;
+    }
+
 }
 
 exports.StopSoundCommand = StopSoundCommand;

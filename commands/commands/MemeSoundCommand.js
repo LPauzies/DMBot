@@ -10,7 +10,7 @@ class MemeSoundCommand extends SoundCommand.SoundCommand {
     // Overrided from SoundCommand
     execute(messageObject, ...args) {
         if (!args) {
-            messageObject.reply("cannot play this meme sound, not provided");
+            messageObject.reply("cannot play this meme sound, not provided :x:");
             return;
         }
         let argsSplitted = args[0].split(" ");

@@ -9,7 +9,7 @@ class LuckRollDiceCommand extends Command.Command {
     // Overrided from Command
     execute(messageObject, ...args) {
         let roll = Math.ceil(Math.random() * (19)) + 1;
-        messageObject.channel.send(`Luck dice : ${roll}`);
+        messageObject.channel.send(`:game_die: Luck dice : ${roll}`);
     }
 
     //Overrided from Command

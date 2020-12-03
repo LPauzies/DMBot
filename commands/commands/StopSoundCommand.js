@@ -28,11 +28,11 @@ class StopSoundCommand extends Command.Command {
             }
 
             if (!voiceChannel.joinable) {
-                messageObject.reply("cannot connect to a not joinable voice channel");
+                messageObject.reply("cannot connect to a not joinable voice channel :x:");
                 throw new NotInVoiceChannelError.NotInVoiceChannelError("Cannot connect to a not joinable voice channel");
             }
             if (!isAlreadyUsed) {
-                messageObject.reply("not connected to this voice channel")
+                messageObject.reply("not connected to this voice channel :x:")
                 throw new NotAvailableVoiceChannelError.NotAvailableVoiceChannelError("Not connected to this voice channel");
             }
 

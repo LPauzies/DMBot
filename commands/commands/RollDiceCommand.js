@@ -27,7 +27,7 @@ class RollDiceCommand extends Command.Command {
     execute(messageObject, ...args) {
         const ERROR_PATTERN = "&&";
         if (!args[0]) {
-            messageObject.channel.send(`I cannot calculate this expression`);
+            messageObject.channel.send(`:x: I cannot calculate this expression`);
             return;
         }
         let resString = "";
@@ -76,7 +76,7 @@ class RollDiceCommand extends Command.Command {
         let resValueString = splittedArgs.map(mapper).join("");
 
         if (resValueString.includes(ERROR_PATTERN)) {
-            messageObject.channel.send(`I cannot calculate this expression because illegal characters are not allowed`);
+            messageObject.channel.send(`:x: I cannot calculate this expression because illegal characters are not allowed`);
             return;
         }
 
@@ -84,7 +84,7 @@ class RollDiceCommand extends Command.Command {
             let resValue = eval(resValueString);
             messageObject.channel.send(`:game_die: Dice rolled : ${resString} = **${resValue}**`);
         } catch (error) {
-            messageObject.channel.send(`I cannot calculate this expression because illegal characters are not allowed`);
+            messageObject.channel.send(`:x: I cannot calculate this expression because illegal characters are not allowed`);
             return;
         }
     }

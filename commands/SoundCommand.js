@@ -29,7 +29,7 @@ class SoundCommand extends Command.Command {
         if (voiceChannel) {
             //Check if joinable
             if (!voiceChannel.joinable) {
-                messageObject.reply("cannot join this channel");
+                messageObject.reply("cannot join this channel :x:");
                 throw new NotInVoiceChannelError.NotInVoiceChannelError("Cannot connect to a not joinable voice channel");
             }
             // Check if the bot is connected to a voice channel
@@ -44,7 +44,7 @@ class SoundCommand extends Command.Command {
             }
 
             if (isAlreadyUsed) {
-                messageObject.reply("DMBot is already busy !");
+                messageObject.reply("DMBot is already busy ! :x:");
                 throw new NotAvailableVoiceChannelError.NotAvailableVoiceChannelError("Voice channel already busy by DMBot");
             }
 
@@ -57,14 +57,14 @@ class SoundCommand extends Command.Command {
                                 async voiceConnection => {
                                     voiceConnection.play(await ytdl(jsonSound.link), { type : "opus" })
                                                 .on("finish", () => voiceChannel.leave());
-                                    messageObject.channel.send(`Currently playing **${jsonSound.name}**`);
+                                    messageObject.channel.send(`:notes: Currently playing **${jsonSound.name}**`);
                                 })
                             .catch(error => {
-                                messageObject.reply("cannot join this channel");
+                                messageObject.reply("cannot join this channel :x:");
                                 throw error;
                             });
             } else {
-                messageObject.reply("cannot find this sound");
+                messageObject.reply("cannot find this sound :x:");
                 throw new SoundNotFoundError.SoundNotFoundError("This sound does not exist");
             }
         }
@@ -82,7 +82,7 @@ class SoundCommand extends Command.Command {
     }
 
     generateHelpMessage() {
-        let res = `Help message for **${this.keyword}**\n---\n`;
+        let res = `:interrobang: Help message for **${this.keyword}**\n---\n`;
         let maxMessageInOneLine = 5;
         let currentMessageCountInOneLine = 1;
         for (const sound of this.soundsAvailables) {

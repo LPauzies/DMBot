@@ -25,7 +25,7 @@ class MemeSoundCommand extends SoundCommand.SoundCommand {
 
     //Overrided from SoundCommand
     help() {
-        return `${this.prefix} ${this.keyword} <meme> => ${this.description}`;
+        return `${this.prefix} **${this.keyword}** <meme> => ${this.description}`;
     }
 
 }

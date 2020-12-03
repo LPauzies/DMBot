@@ -91,7 +91,7 @@ class RollDiceCommand extends Command.Command {
 
     //Overrided from Command
     help() {
-        return `${this.prefix} ${this.keyword} => ${this.description}`;
+        return `${this.prefix} **${this.keyword}** => ${this.description}`;
     }
 
     static #rollDiceOnce = (diceValue) => Math.ceil(Math.random() * (diceValue - 1)) + 1;

@@ -25,7 +25,7 @@ class AmbientSoundCommand extends SoundCommand.SoundCommand {
 
     //Overrided from SoundCommand
     help() {
-        return `${this.prefix} ${this.keyword} <ambient> => ${this.description}`;
+        return `${this.prefix} **${this.keyword}** <ambient> => ${this.description}`;
     }
 
 }

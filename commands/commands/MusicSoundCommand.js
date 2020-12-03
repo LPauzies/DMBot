@@ -25,7 +25,7 @@ class MusicSoundCommand extends SoundCommand.SoundCommand {
 
     //Overrided from SoundCommand
     help() {
-        return `${this.prefix} ${this.keyword} <music> => ${this.description}`;
+        return `${this.prefix} **${this.keyword}** <music> => ${this.description}`;
     }
 
 }

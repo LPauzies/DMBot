@@ -4,10 +4,10 @@ class HelpCommand extends Command.Command {
 
     constructor(prefix, ...commands) {
         super(prefix, "help", "Generate help for DMBot");
-        this.commands = ":interrobang: Here is the help of DMBot :\n  " + 
+        this.commands = "Here is the help of DMBot :interrobang::\n\t" + 
             this.help() + 
-            "\n  " + 
-            commands.map(command => command.help()).join("\n  ");
+            "\n\t" + 
+            commands.map(command => command.help()).join("\n\t");
     }
 
     // Overrided from Command

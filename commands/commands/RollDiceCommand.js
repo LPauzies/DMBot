@@ -82,7 +82,7 @@ class RollDiceCommand extends Command.Command {
 
         try {
             let resValue = eval(resValueString);
-            messageObject.channel.send(`Dice rolled : ${resString} = ${resValue}`);
+            messageObject.channel.send(`:game_die: Dice rolled : ${resString} = **${resValue}**`);
         } catch (error) {
             messageObject.channel.send(`I cannot calculate this expression because illegal characters are not allowed`);
             return;

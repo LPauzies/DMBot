@@ -82,7 +82,7 @@ class SoundCommand extends Command.Command {
     }
 
     generateHelpMessage() {
-        let res = `:interrobang: Help message for **${this.keyword}**\n---\n`;
+        let res = `:interrobang: Help message for **${this.keyword}** :interrobang:\n\n`;
         let maxMessageInOneLine = 5;
         let currentMessageCountInOneLine = 1;
         for (const sound of this.soundsAvailables) {

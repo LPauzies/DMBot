@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('discord-ytdl-core');
 
 const Command = require('./Command.js');
 const SoundNotFoundError = require("./../utils/errors/SoundNotFoundError.js");
@@ -55,7 +55,7 @@ class SoundCommand extends Command.Command {
                 voiceChannel.join()
                             .then(
                                 async voiceConnection => {
-                                    voiceConnection.play(await ytdl(jsonSound.link), { type : "opus" })
+                                    voiceConnection.play(await ytdl(jsonSound.link, { filter: "audioonly", opusEncoded: true }), { type: "opus" })
                                                 .on("finish", () => voiceChannel.leave());
                                     messageObject.channel.send(`:notes: Currently playing **${jsonSound.name}**`);
                                 })
